@@ -242,10 +242,6 @@ $ npm test
 ![单元测试](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/screenshot1.png)
 ![单元测试](https://raw.githubusercontent.com/Binaryify/NeteaseCloudMusicApi/master/static/screenshot2.png)
 
-## 贡献者
-
-![](https://opencollective.com/NeteaseCloudMusicApi/contributors.svg?width=890)
-
 ## License
 
 [The MIT License (MIT)](https://github.com/Binaryify/NeteaseCloudMusicApi/blob/master/LICENSE)
