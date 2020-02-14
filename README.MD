@@ -211,7 +211,7 @@ $ npm install
 $ node app.js
 ```
 
-服务器启动默认端口为 3000,若不想使用 3000 端口,可使用以下命令: Mac/Linux
+服务器启动默认端口为 2999,若不想使用 2999 端口,可使用以下命令: Mac/Linux
 
 ```shell
 $ PORT=4000 node app.js
