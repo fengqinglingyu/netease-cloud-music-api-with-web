@@ -5,6 +5,7 @@ import PlayList from './components/recommend/playList';
 import Play from './components/play';
 import './index.less';
 import Store, { reducer, initState } from './store';
+import { debounce } from './util';
 
 const App: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initState);
@@ -47,7 +48,17 @@ const App: React.FC = () => {
       },
       false
     );
-  }, []);
+  }, [])
+  useEffect(() => {
+    const getClientWidth = () => {
+      const width = document.documentElement.clientWidth;
+      dispatch({ type: 'setClientWidth', width })
+    }
+    window.addEventListener('resize', debounce(() => {
+      getClientWidth()
+    }, 300), false)
+    getClientWidth()
+  }, [])
   return (
     <div className="App">
       <Store.Provider value={{ state, dispatch }}>{renderPage()}</Store.Provider>

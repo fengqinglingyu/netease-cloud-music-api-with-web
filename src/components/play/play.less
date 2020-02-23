@@ -19,6 +19,7 @@
     left: 172px;
     z-index: 1;
     background-size: contain;
+    background-repeat: no-repeat;
     background-image: url(//s3.music.126.net/mobile-new/img/needle-ip6.png?be4ebbeb6befadfcae75ce174e7db862=);
   }
 
@@ -151,11 +152,28 @@
   position: relative;
   background-color: #fff;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   .finish {
     width: 0;
     height: 100%;
     background-color: #d43c33;
     float: left;
+    position: relative;
+   
+      &::after {
+        position: absolute;
+        content: ' ';
+        right: 0;
+        top: -2px;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background-color: #d43c33;
+      }
+    
   }
 
   .dot {
@@ -168,4 +186,12 @@
     top: -2px;
     left: -2px;
   }
+}
+
+.play-time {
+  position: relative;
+  color: #fff;
+  text-align: right;
+  margin-top: 1vw;
+  font-size: 3.2vw;
 }

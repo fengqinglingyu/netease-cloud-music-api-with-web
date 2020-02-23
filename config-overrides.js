@@ -19,6 +19,7 @@ const devServerConfig = () => config => {
   };
 };
 
+const px2Viewport = 'postcss-px-to-viewport';
 module.exports = {
   webpack: override(
     fixBabelImports('import', {
@@ -32,9 +33,9 @@ module.exports = {
       },
     }),
     addPostcssPlugins([
-      require('postcss-px-to-viewport')({
-        viewportWidth: 325,
-        viewportHeight: 568,
+      require(px2Viewport)({
+        viewportWidth: 375,
+        viewportHeight: 667,
         unitPrecision: 3,
         viewportUnit: 'vw',
         selectorBlackList: [],

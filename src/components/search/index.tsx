@@ -53,8 +53,8 @@ export default () => {
     count: 0,
     isEnd: false,
   });
-  const textChange = (e: React.SyntheticEvent) => {
-    const val = (e.target as HTMLInputElement).value;
+  const textChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value;
     if (!isCompositionInput) {
       setText(val);
     }
@@ -62,7 +62,7 @@ export default () => {
   const inputBegin = () => {
     setIsCompositionInput(true);
   };
-  const inputEnded = (e: React.SyntheticEvent) => {
+  const inputEnded = (e: React.CompositionEvent<HTMLInputElement>) => {
     const val = (e.target as HTMLInputElement).value;
     setText(val);
     setIsCompositionInput(false);
@@ -78,7 +78,7 @@ export default () => {
       setHistoryList([...historyList]);
     }, 0);
   };
-  const search = (e: React.SyntheticEvent) => {
+  const search = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const which: number = (e as any).which;
     if (which === 13) {
       const val = (e.target as HTMLInputElement).value;
@@ -265,9 +265,9 @@ export default () => {
             onFocus={inputFocus}
             defaultValue={text}
             ref={searchBoxRef}
-            // 不能绑定 value，因为 onChange 如果没法改变 value 的话，会有无法输入的情况，
-            // 中文的情况会导致这种情况
-            // value
+          // 不能绑定 value，因为 onChange 如果没法改变 value 的话，会有无法输入的情况，
+          // 中文的情况会导致这种情况
+          // value
           ></input>
           <Icon
             type="cross-circle-o"

@@ -7,16 +7,20 @@ export interface SongInfo {
 }
 
 export interface RootState {
+  clientWidth: number;
   loading: boolean;
   songInfo?: SongInfo;
 }
 export const initState: RootState = {
+  clientWidth: 0,
   loading: false,
   songInfo: sessionStorage.songInfo ? JSON.parse(sessionStorage.songInfo) : void 0,
 };
 
 export const reducer = (state: RootState, action: any): RootState => {
   switch (action.type) {
+    case 'setClientWidth':
+      return { ...state, clientWidth: action.width }
     case 'showLoading':
       return { ...state, loading: true };
     case 'hideLoading':
