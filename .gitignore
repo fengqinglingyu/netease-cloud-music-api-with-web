@@ -1,8 +1,7 @@
-.DS_Store
-node_modules
 *.log
 
-.idea/
+/.idea/
+yarn.lock
 package-lock.json
 
 .vscode
