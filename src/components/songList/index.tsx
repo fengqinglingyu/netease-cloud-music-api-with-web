@@ -47,7 +47,11 @@ const SongList = ({
    * @paramartistsObj 艺术家信息
    * @param aliasList 歌曲的别名信息
    */
-  const onItemClick = async (item: any, artistsList: string[] = [], aliasList: string[]) => {
+  const onItemClick = async (
+    item: any,
+    artistsList: string[] = [],
+    aliasList: string[]
+  ) => {
     let name = item.name;
     if (aliasList?.length) {
       name += `（${aliasList.join('')}）`;
@@ -57,6 +61,7 @@ const SongList = ({
     const url = songUrl?.data[0]?.url || '';
     if (!url) {
       alert('无版权！请登录再试');
+      return;
     }
     const [songInfo, lrcInfo] = await Promise.all([
       req(`/song/detail?ids=${item.id}`),
@@ -104,7 +109,9 @@ const SongList = ({
       );
     }
     return (
-      <div className="new-songs-rate">{(idx + 1).toString().padStart(rateMinLength, '0')}</div>
+      <div className="new-songs-rate">
+        {(idx + 1).toString().padStart(rateMinLength, '0')}
+      </div>
     );
   };
   const renderAlias = (aliasList: string[] | undefined) => {
@@ -130,7 +137,9 @@ const SongList = ({
             {keyword ? (
               <div
                 className="new-songs-title"
-                dangerouslySetInnerHTML={{ __html: highlight(item.name, keyword) }}
+                dangerouslySetInnerHTML={{
+                  __html: highlight(item.name, keyword),
+                }}
               ></div>
             ) : (
               <div className="new-songs-title">
@@ -140,10 +149,14 @@ const SongList = ({
             {keyword ? (
               <div
                 className="new-songs-extra"
-                dangerouslySetInnerHTML={{ __html: renderAuthorAlbum(artistsList, albumObj) }}
+                dangerouslySetInnerHTML={{
+                  __html: renderAuthorAlbum(artistsList, albumObj),
+                }}
               ></div>
             ) : (
-              <div className="new-songs-extra">{renderAuthorAlbum(artistsList, albumObj)}</div>
+              <div className="new-songs-extra">
+                {renderAuthorAlbum(artistsList, albumObj)}
+              </div>
             )}
           </div>
           <div className="play-button">

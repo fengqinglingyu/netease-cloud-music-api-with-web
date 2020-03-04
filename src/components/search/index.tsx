@@ -74,7 +74,7 @@ export default () => {
         historyList.splice(idx, 1);
       }
       historyList.unshift(songName);
-      sessionStorage.setItem('history', historyList.toString());
+      localStorage.setItem('history', historyList.toString());
       setHistoryList([...historyList]);
     }, 0);
   };
@@ -183,7 +183,9 @@ export default () => {
   }, []);
   useEffect(() => {
     const getSeggest = async () => {
-      const res = await req(`/search/suggest?keywords=${debounceText}&type=mobile`);
+      const res = await req(
+        `/search/suggest?keywords=${debounceText}&type=mobile`
+      );
       if (res && res.result && res.result.allMatch) {
         setSuggest(res.result.allMatch);
       } else {
@@ -265,9 +267,9 @@ export default () => {
             onFocus={inputFocus}
             defaultValue={text}
             ref={searchBoxRef}
-          // 不能绑定 value，因为 onChange 如果没法改变 value 的话，会有无法输入的情况，
-          // 中文的情况会导致这种情况
-          // value
+            // 不能绑定 value，因为 onChange 如果没法改变 value 的话，会有无法输入的情况，
+            // 中文的情况会导致这种情况
+            // value
           ></input>
           <Icon
             type="cross-circle-o"
@@ -279,13 +281,19 @@ export default () => {
         </div>
       </section>
       <section style={{ display: isResultPage ? 'none' : 'block' }}>
-        <section className="search-tip" style={{ display: isSearchTips ? 'block' : 'none' }}>
+        <section
+          className="search-tip"
+          style={{ display: isSearchTips ? 'block' : 'none' }}
+        >
           <section className="search-info" onClick={clickHeadItem}>
             搜索“{text}”
           </section>
           <ul className="tips">{suggestList()}</ul>
         </section>
-        <section className="search-default" style={{ display: isSearchTips ? 'none' : 'block' }}>
+        <section
+          className="search-default"
+          style={{ display: isSearchTips ? 'none' : 'block' }}
+        >
           <div className="search-hot">
             <div className="title">热门搜索</div>
             <ul className="list">
